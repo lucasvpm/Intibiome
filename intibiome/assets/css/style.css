@@ -1,0 +1,418 @@
+
+/* Font Configuration */
+
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: url('../fonts/TrebuchetMS.eot');
+    src: url('../fonts/TrebuchetMS.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TrebuchetMS.woff2') format('woff2'),
+        url('../fonts/TrebuchetMS.woff') format('woff'),
+        url('../fonts/TrebuchetMS.ttf') format('truetype'),
+        url('../fonts/TrebuchetMS.svg#TrebuchetMS') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: url('../fonts/TrebuchetMS-Bold.eot');
+    src: url('../fonts/TrebuchetMS-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/TrebuchetMS-Bold.woff2') format('woff2'),
+        url('../fonts/TrebuchetMS-Bold.woff') format('woff'),
+        url('../fonts/TrebuchetMS-Bold.ttf') format('truetype'),
+        url('../fonts/TrebuchetMS-Bold.svg#TrebuchetMS-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+/* Global configuration */
+
+:root {
+
+	/* Font Family */
+	--global--font-primary: 'Trebuchet MS';
+
+
+	/* Colors */
+	--global--color-primary: #389CD6;
+	--global--color-secondary: #7B7070;
+	--global--color-brand-gray: #9D8E8E;
+    --global--color-green: #309D5F;  
+    --global--color-white: #fff; 
+    --global--color-red: #EE6381; 
+	--global--color-p: #7B7070;
+	--global--color-title: #389CD6;
+	--global--font-size-p: 1rem;
+	--global--font-size-h1: 2rem;
+	--global--font-size-h2: 1.75rem
+
+}
+
+*{
+	box-sizing: border-box;
+	font-family: var(--global--font-primary);
+	font-weight: 400;
+    margin: 0;
+}
+
+img{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+p,h1,h2,h3,h4,h5,h6{
+    margin-bottom: 12px;
+}
+h1,h2,h3,h4,h5,h6{
+    color: var(--global--color-title);
+    font-weight: bold;
+}
+p{
+    font-size: var(--global--font-size-p);
+    color: var(--global--color-p);
+}
+h1{
+    font-size: var(--global--font-size-h1);
+}
+h2{
+    font-size: var(--global--font-size-h2);
+}
+.wrapper{
+    padding: 60px 0px;
+}
+.text-center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+/* Header */
+.main-menu-container.mobile-version{
+    display: none;
+    background-color: var(--global--color-primary);
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 999;
+    padding-top: 181px;
+}
+.logo{
+    display: block;
+    width: 192px;
+    margin: auto;
+}
+.top-header{
+    background-color: var(--global--color-white);
+    position: relative;
+    z-index: 9999;
+}
+.search-toggle,
+.menu-toggle{
+    margin: auto;
+    display: block;
+    width: 24px;
+    transition: all .3s;
+}
+.menu-toggle.active img{
+    content: url(/wp-content/themes/intibiome/assets/img/icon-close.svg);
+    width: 14px;
+}
+.main-menu-container{
+    background-color: var(--global--color-primary);
+}
+.main-menu .main-menu-nav{
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+.main-menu .main-menu-nav li{
+    display: inline-block;
+}
+.main-menu .main-menu-nav li.menu-item-has-children > a:after{
+    content: url("/wp-content/themes/intibiome/assets/img/icon-chevron-down.svg");
+    filter: brightness(0%) invert();
+    display: inline-block;
+    width: 20px;
+    margin-left: 9px;
+    position: relative;
+    top: 5px;
+}
+.main-menu .main-menu-nav li.menu-item-has-children:hover .sub-menu{
+	opacity:1;
+	pointer-events:all;
+}
+.main-menu .main-menu-nav > li a{
+    padding: 15px 36px;
+    display: block;
+    color: var(--global--color-white);
+    text-decoration: none;
+}
+.main-menu .main-menu-nav li .sub-menu{
+    position: absolute;
+    top: 49px;
+    z-index: 1;
+    width: 100%;
+    left: 0px;
+    background: var(--global--color-brand-gray);
+    padding: 10px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .3s;
+}
+.main-menu .main-menu-nav li .sub-menu > li a{
+	padding: 0px 36px;
+}
+.search-toggle:hover,
+.menu-toggle:hover{
+    transform: scale(1.05);
+}
+.search-overlay{
+	position:fixed;
+	z-index: 99999;
+	width:100%;
+	height:100%;
+	background-color: rgb(0 0 0 / 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity:0;
+	pointer-events:none;
+	transition: all .3s;
+}
+.search-overlay.active{
+	opacity:1;
+	pointer-events:all;
+}
+.search-overlay .search-form{
+	width:50%;
+}
+.search-overlay .search-field{
+	text-align:center;
+	width:100%;
+	font-size:2rem;
+    border: none;
+    background: transparent;
+    color: #fff;
+    border-bottom: 2px solid #aaa;
+    padding: 12px;
+}
+.search-overlay .search-field::placeholder{
+    color: #aaa;
+}
+.search-close{
+	cursor:pointer
+}
+.search-close svg{
+	width: 32px;
+	position:absolute;
+	right:50px;
+	top:50px
+}
+.search-close svg:hover path{
+    fill: #ddd !important;
+}
+.search-close svg path{
+	fill: #aaa !important;
+    transition: all .3s;
+}
+/* Content */
+#hero-banner{
+    padding: 0;
+}
+h2.section-title{
+    margin-bottom: 30px;
+}
+#about img{
+    width: 90%;
+    margin: auto;
+}
+#about .media{
+    margin: 30px 0px;
+}
+#about .description{
+    width: 50%;
+    margin: auto;
+}
+.products,
+.list-posts{
+	padding:0px 45px;
+}
+.products .slick-track{
+	display:flex;
+}
+.products .slick-track .slick-slide{
+	height: inherit !important;
+}
+.products .product,
+.list-posts .post{
+	padding: 15px;
+}
+.products .product .content,
+.list-posts .post .content{
+	box-shadow: 0px 3px 6px rgb(0 0 0 / .16);
+	border-radius:15px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
+}
+.products .product .excerpt,
+.list-posts .post .description{
+	padding:15px;
+}
+.list-posts .post .description{
+    color: var(--global--color-p);
+}
+.products .product .category{
+	padding:15px;
+	background:var(--global--color-primary);
+	color:var(--global--color-white);
+	font-weight:bold;
+    font-size: 1.15rem;
+}
+
+.products .product:nth-child(2) .category{
+	background:var( --global--color-green);
+}
+.products .product:last-child .category{
+	background:var( --global--color-red);
+}
+#mid-banner{
+    padding: 60px 0px;
+}
+#posts-home{
+    padding-top: 0px;
+}
+.btn-more{
+	background: var(--global--color-primary);
+	color:var(--global--color-white);
+	font-weight:bold;
+	text-decoration:none;
+	padding:10px 75px;
+	border-radius:7px;
+	display:inline-block;
+	margin-top:30px;
+	transition: all .3s;
+}
+.btn-more:hover{
+	background: var(--global--color-secondary);
+}
+footer{
+    background: var(--global--color-primary);
+    padding: 60px 0px;
+    padding-bottom:30px
+}
+.menu-footer-nav{
+	padding:0;
+	list-style:none;
+	text-align:center;
+    margin-bottom: 40px;
+}
+.menu-footer-nav li{
+	display:inline-block;
+}
+.menu-footer-nav li:after{
+	content:"";
+	width:2px;
+	height: 17px;
+	margin: 0px 22px;
+	display:inline-block;
+	background:var(--global--color-white);
+	margin-left: 25px;
+	position:relative;
+	top:05px;
+}
+.menu-footer-nav li:last-child:after{
+	display:none
+}
+.menu-footer-nav li a{
+	text-decoration:none;
+	color: var(--global--color-white);
+}
+.instagram{
+    margin-left: auto;
+    display: block;
+    width: fit-content;
+    width: -moz-fit-content;
+}
+.ulabs img,
+.instagram img{
+    transition: all .3s;
+}
+.ulabs img:hover,
+.instagram img:hover{
+    opacity: 0.7;
+}
+.ulabs{
+    width: 112px;
+    display: block;
+}
+.instagram img{
+    width: 36px;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1024px){
+    .main-menu .main-menu-nav li{
+		width:100%;
+		text-align:left;
+	}
+	.main-menu .main-menu-nav li .sub-menu{
+		position:static;
+		pointer-events:all;
+		opacity:1;
+		background:none;
+		display:none;
+	}
+}
+
+/* Mobile */
+
+@media (max-width: 767px) {
+    #about .description,
+    #about img{
+        width: 100%;
+    }
+    .products, .list-posts{
+        padding: 0px;
+    }
+	.menu-footer-nav li{
+		width: 100%
+	}
+	.menu-footer-nav li:after {
+	    content: "";
+		display:block;
+	    width: 17px;
+	    height: 2px;
+	    margin: 18px auto;
+	    background: var(--global--color-white);
+	    position: relative;
+	    top: 0px;
+	}
+	.social-medias .instagram{
+		margin-bottom:40px;
+	}
+	.ulabs,
+	.instagram{
+		display:block;
+		margin:auto;
+	}
+	.social-medias{
+		flex-direction:column-reverse
+	}
+    .search-overlay .search-form{
+        width: 90%;
+    }
+}
